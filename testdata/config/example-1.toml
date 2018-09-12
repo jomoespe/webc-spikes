@@ -1,0 +1,25 @@
+# Common configuration
+# we could base on https://caddyserver.com/docs/proxy
+name = "This is a configuration"   # the configuration name
+timeout = "30s"                    # 30s is the default duration before timing out the connection to upstream
+max-cons = 0
+insecure-skip-verify = false
+except = [ "/health", "/ready", "/routes", "/trace", "/metrics", "/env" ]
+filter-headers = [ "if-none-match", "if-not-modified", "if-modified-since" ]
+filter-cookie = [ "if-none-match", "if-not-modified", "if-modified-since" ]
+
+[routes]  # Routes definition. It will be a map(source-path, target-url)
+
+    [routes."/my-pet-profile"]
+        to = "http://mpp.zooplus.com"    # destination enpoint to route to.
+        timeout = "10s"                  # is the duration before timing out the connection to upstream
+        max-conns = 10                   # is the maximum number of concurrent requests to each backend. 0 means no limit. When the limit is reached, additional requests will fail with Bad Gateway (502). Default is 0.
+        insecure-skip-verify = true      # overrides verification of the backend TLS certificate, essentially disabling security features over HTTPS.
+        except = [ "/health", "/routes", "/trace", "/metrics", "/env" ]
+        filter-headers = [ "if-none-match", "if-not-modified", "if-modified-since" ]
+                                     # list of header to filter to the upstream
+        filter-cookie = [ "JSESSIONID" ] # list of cookies to filter to the downstream     
+        # TODO think about circuit breaker parameters and (related) health check parameters  
+                                    
+    [routes."/my-account"]
+        target = "http://accounts.zooplus.com"

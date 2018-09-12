@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang=en>
+    <title>process-html example 1</title>
+    <!-- About meta tags: https://gist.github.com/kevinSuttle/1997924 -->
+    <meta charset=UTF-8>
+    <meta name=description content="An example os golang.org/x/net/html package usage">
+    <!-- about script tag: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script -->
+    <script src=/js/a-javascript.js defer async></script>
+    <link href=/css/a-stylesheet.css rel=stylesheet>
+    <style>
+        html{
+            font: 1em arial;
+        }
+    </style>
+    
+    <h1>process-html example 1</h1>
+    <p>This is the sample file for <code>process-html</code>.</p>
+
+    <section>This is a section</section>
+    <section data-src=https://server/path/section>This is a section with <code>data-src</code> attribute.</section>
+    <a-webcomponent data-src=https://server/path/a-webcomponent>This is a Webcomponent™ with <code>data-src</code> attribute.</a-webcomponent>
+    <section>This is another section</section>
+    <div data-src=https://server/path/div>
+        <p data-src=https://serever/path/p>This shouldn't been processed.</p>
+        <section>This is a section should not be processed</section>
+    </div>
+</html>
