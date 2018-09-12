@@ -11,7 +11,7 @@ A set of spikes and PcC's of ideas tu be used in Webcomposer.
 - [Go 1.11+](https://golang.org/)
 - [Make](https://www.gnu.org/software/make/) (Optional)
 
-If you dont't have or you don't want to use make, you can run the test with `go test ./...`.
+> If you dont't have or you don't want to use make, you can run the test with `go test ./...`.
 
 ## Examples / PoC's / Spikes
 
