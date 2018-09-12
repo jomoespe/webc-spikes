@@ -14,7 +14,7 @@ func TestProcessHTMLTasgs(t *testing.T) {
 		tag      string
 		total    int
 	}{
-		{"../../testdata/process-html/example-1.html", "section", 4},
+		{"../../testdata/process-html/example-1.html", "section", 3},
 		{"../../testdata/process-html/example-1.html", "p", 2},
 	}
 

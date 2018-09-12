@@ -19,9 +19,10 @@
     <section>This is a section</section>
     <section data-src=https://server/path/section>This is a section with <code>data-src</code> attribute.</section>
     <a-webcomponent data-src=https://server/path/a-webcomponent>This is a Webcomponent™ with <code>data-src</code> attribute.</a-webcomponent>
-    <section>This is another section</section>
+    <section>This is another section
+        <section>This is a section should not be processed</section>
+    </section>
     <div data-src=https://server/path/div>
         <p data-src=https://serever/path/p>This shouldn't been processed.</p>
-        <section>This is a section should not be processed</section>
     </div>
 </html>
