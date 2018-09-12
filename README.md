@@ -21,7 +21,7 @@ A set of spikes and PcC's of ideas tu be used in Webcomposer.
 
 Different examples to assert...
 
-- How to process specific tags ((by type, attribute value, etc)
+- [DONE] How to process specific tags ((by type, attribute value, etc)
 - Change DOM node content.
 
 ### HTTPTest
@@ -35,7 +35,37 @@ A test about using [TOML](https://github.com/toml-lang/toml) as configuration fi
 
 To assert:
 
-- Read a TOML file.
-- Set default values.
-- Add more fields in file than defined in config.
+- [DONE] Read a TOML file.
+- [DONE] Set default values.
+- Add more fields in file than defined in struct.
 - Check the status con *config object* if fails whe marshalling.
+
+### Reload application configuration dynamically
+
+Make a program that receives a signal (`SIGHUP` for example) reload the configuration or restart the application.
+
+Base on:
+
+- [SIGHUP for reloading configuration](https://stackoverflow.com/questions/19052354/sighup-for-reloading-configuration#28327659)
+- [Golang catch signals](https://stackoverflow.com/questions/18106749/golang-catch-signals)
+- [Package signal](https://golang.org/pkg/os/signal/#pkg-index)
+
+**Build**
+
+```bash
+# with make
+make build-reload-config
+
+# without make
+go build -o reload-config cmd/reload-config/main.go
+```
+
+**Run and check behavior**
+
+```bash
+# Start the program
+./reload-config
+
+# in other terminal, find the process and send SIGHUP
+pidof reload-config 1 | xargs kill -1
+```
