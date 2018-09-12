@@ -66,6 +66,9 @@ go build -o reload-config cmd/reload-config/main.go
 # Start the program
 ./reload-config
 
-# in other terminal, find the process and send SIGHUP
-pidof reload-config 1 | xargs kill -1
+# in other terminal, find the process and send a SIGHUP signal
+pidof reload-config 1 | xargs kill -SIGHUP
+
+# to finish the program, sendd the SIGKILL signal or Crtl+C
+pidof reload-config 1 | xargs kill -SIGKILL
 ```
