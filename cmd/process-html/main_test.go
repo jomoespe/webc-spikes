@@ -49,38 +49,6 @@ func TestProcessHTMLTasgs(t *testing.T) {
 	}
 }
 
-func TestCanRemoveChildren(t *testing.T) {
-	tt := [...]struct {
-		filename string
-		elements int
-	}{
-		{"../../testdata/process-html/clean-node-1.html", 3},
-	}
-	for _, test := range tt {
-		b, _ := os.Open(test.filename)
-		doc, err := html.Parse(b)
-		if err != nil {
-			t.Fatalf("cannot parse testfile %s", test.filename)
-		}
-
-		countChildren := func(n *html.Node) (i int) {
-			for c := n.FirstChild; c != nil; c = c.NextSibling {
-				i++
-			}
-			return
-		}
-
-		var wg sync.WaitGroup
-		wg.Add(1)
-		go removeChildren()(&wg, doc)
-		wg.Wait()
-
-		if countChildren(doc) != 0 {
-			t.Fatalf("Unexpected number of nodes after removeChildren. Expected 0, got: %d", countChildren(doc))
-		}
-	}
-}
-
 func ExampleVisitNodes() {
 	filename := "../../testdata/process-html/example-1.html"
 	isSection := tag("section")
@@ -120,15 +88,6 @@ func printNodeData() visitor {
 	return func(wg *sync.WaitGroup, n *html.Node) {
 		defer wg.Done()
 		fmt.Println(n.Data)
-	}
-}
-
-func removeChildren() visitor {
-	return func(wg *sync.WaitGroup, n *html.Node) {
-		defer wg.Done()
-		for c := n.FirstChild; c != nil; c = c.NextSibling {
-			n.RemoveChild(c)
-		}
 	}
 }
 
