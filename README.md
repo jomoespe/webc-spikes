@@ -22,6 +22,7 @@ A set of spikes and PcC's of ideas tu be used in Webcomposer.
 Different examples to assert...
 
 - [DONE] How to process specific tags ((by type, attribute value, etc)
+- [DONE] Remove node children.
 - Change DOM node content.
 
 ### HTTPTest
