@@ -27,11 +27,12 @@ func Parse(r io.Reader) (c *ComposableNode, err error) {
 }
 
 func (n *ComposableNode) Compose() {
-	c := concurrentComposer()
-
+	composer := concurrentComposer()
+	predicate := tag(atom.Section)
+	visitor := printNodeData()
 	var wg sync.WaitGroup
 	wg.Add(1)
-	go c(&wg, n, tag(atom.Section), printNodeData())
+	go composer(&wg, n, predicate, visitor)
 	wg.Wait()
 }
 
