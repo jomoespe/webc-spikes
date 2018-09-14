@@ -23,12 +23,12 @@ Different examples to assert...
 
 - [DONE] How to process specific tags ((by type, attribute value, etc)
 - [DONE] Remove node children.
+- [DONE] Visit concurrently all nodes of a type in an HTML.
 - Change DOM node content.
 
 ### HTTPTest
 
 `httptest` is an example of using `net/http/httptest` package to test http entrypoints.
-
 
 ### Config
 
