@@ -30,6 +30,11 @@ Different examples to assert...
 
 `httptest` is an example of using `net/http/httptest` package to test http entrypoints.
 
+Created test about:
+
+- [DONE] A middleware
+- [DONE] A middleware with request context
+
 ### Config
 
 A test about using [TOML](https://github.com/toml-lang/toml) as configuration file format, and [BurntSushi](https://github.com/BurntSushi/toml) as TOML parser.
