@@ -1,3 +1,6 @@
+clean:
+	@ rm -f reload-config buildtags-tag*
+
 test:
 	@ # go test -count=1 ./...  # disable cache
 	@ go test -cover ./... 
