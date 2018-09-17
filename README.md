@@ -81,3 +81,18 @@ pidof reload-config | xargs kill -SIGHUP
 pgrep reload-config | xargs kill -SIGHUP
 pidof reload-config | xargs kill -SIGKILL
 ```
+
+## License
+
+An sample showing a licence preamble, a build tag, and a package declaration:
+
+```go
+// Copyright 2010 Jomoespe. All rights reserved.
+// Use of this source code is governed by a WTFPL-style
+// license that can be found in the LICENSE file.
+
+// +build someos someotheros thirdos feature1 feature2,!amd64
+
+// Package composer implements a web composer that blah blah blah...
+package composer
+```
