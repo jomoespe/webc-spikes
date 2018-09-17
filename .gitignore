@@ -1,2 +1,5 @@
 reload-config
 !reload-config/
+
+buildtags-tag1
+buildtags-tag2

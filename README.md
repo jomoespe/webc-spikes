@@ -11,7 +11,7 @@ A set of spikes and PcC's of ideas tu be used in Webcomposer.
 - [Go 1.11+](https://golang.org/)
 - [Make](https://www.gnu.org/software/make/) (Optional)
 
-> If you dont't have or you don't want to use make, you can run the test with `go test ./...`.
+> If you dont't have or you don't want to use make, you can run the test with `go test ./...`
 
 ## Examples / PoC's / Spikes
 
@@ -45,6 +45,37 @@ To assert:
 - [DONE] Set default values.
 - Add more fields in file than defined in struct.
 - Check the status con *config object* if fails whe marshalling.
+
+### Build tags sample
+
+Example of conditional compilation [using build tags](https://dave.cheney.net/2013/10/12/how-to-use-conditional-compilation-with-the-go-build-tool).
+
+In this example we have a main using a function (`Salutation()`) from a package, and two implementations for this, one tagged as `tag1` and the other tagged as `tag2`. 
+
+**Run or build the example**
+
+You can *run* the application for using one of this tags, with `-tag` parameter.
+
+```bash
+# run function tagged as tag1
+go run -tags tag1 cmd/buildtags/main.go
+
+# run function without tag (tag1 is default)
+go run -tags cmd/buildtags/main.go
+
+# run function tagged as tag2
+go run -tags tag2 cmd/buildtags/main.go
+```
+
+Also you can *build* with the same tag:
+
+```bash
+# run function tagged as tag1
+go build -tags tag1 -o buildtags-tag1 cmd/buildtags/main.go
+
+# run function tagged as tag1
+go build -tags tag2 -o buildtags-tag2 cmd/buildtags/main.go
+```
 
 ### Reload application configuration dynamically
 
