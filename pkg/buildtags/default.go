@@ -2,11 +2,11 @@
 // Use of this source code is governed by a WTFPL-style
 // license that can be found in the LICENSE file.
 
-// +build tag1 !tag2
+// +build default
 
 package buildtags
 
 func Salutation() (name string) {
-	name = "from tag1"
+	name = "from default"
 	return
 }
