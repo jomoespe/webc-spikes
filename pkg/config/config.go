@@ -5,6 +5,7 @@
 package config
 
 import (
+	"regexp"
 	"time"
 )
 
@@ -55,5 +56,17 @@ func NewConfig() (config Config) {
 	config.Excepts = defaultExcepts
 	config.FilterHeaders = defaultFilterHeaders
 	config.FilterCookies = defaultFilterCookies
+	return
+}
+
+// ForURI returns the router configuration for an uri
+func (c *Config) ForURI(uri string) (route Route, found bool) {
+	for k, v := range c.Routes {
+		expr, _ := regexp.Compile(k)
+		if f := expr.FindStringIndex(uri); f != nil && f[0] == 0 {
+			found, route = true, v
+			break
+		}
+	}
 	return
 }

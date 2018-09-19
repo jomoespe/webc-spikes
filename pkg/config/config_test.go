@@ -53,3 +53,26 @@ func TestCanLoadToml(t *testing.T) {
 
 	}
 }
+
+func TestForURI(t *testing.T) {
+	cases := [...]struct {
+		name     string
+		uri      string
+		filename string
+		want     bool
+	}{
+		{"URI exist", "/my-pet-profile", "../../testdata/config/example-1.toml", true},
+		{"URI doesn't exist", "/this-uri/does-not/exist", "../../testdata/config/example-1.toml", false},
+	}
+	for _, tt := range cases {
+		t.Run(tt.name, func(t *testing.T) {
+			f, _ := ioutil.ReadFile(tt.filename)
+			c := config.NewConfig()
+			toml.Unmarshal(f, &c)
+
+			if _, exist := c.ForURI(tt.uri); exist != tt.want {
+				t.Fatalf("Found URI configuration. Got: %t, Want: %t", exist, tt.want)
+			}
+		})
+	}
+}
