@@ -21,7 +21,7 @@ func TestHandler(t *testing.T) {
 		wantBody   string
 	}{
 		{"must salutate Google.com", "http://xxx/google", http.StatusOK, "Hello, http://www.google.com"},
-		{"must salutate Boxever.com", "http://xxx/boxever", http.StatusOK, "Hello, https://www.boxever.com"},
+		{"must salutate Boxever.com", "https://xxx/boxever", http.StatusOK, "Hello, https://www.boxever.com"},
 		{"path doesn't exist", "http://xxx/unknown", http.StatusNotFound, "\n"},
 	}
 	for _, tt := range cases {
