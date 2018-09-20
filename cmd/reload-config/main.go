@@ -16,7 +16,8 @@ func main() {
 	signal.Notify(sigc, syscall.SIGHUP)
 
 	go func() {
-		fmt.Println("Waiting for SIGHUB signal (kill -SIGHUP <pid>)...")
+		fmt.Println("Waiting for SIGHUB signal")
+		fmt.Println("You can open a new ternimal and execute:\n  pgrep reload-config | xargs kill -SIGHUP")
 		for {
 			select {
 			case s := <-sigc:
@@ -24,7 +25,6 @@ func main() {
 			}
 		}
 	}()
-	fmt.Println("Waiting forever...")
 	c := make(chan bool)
 	<-c
 }
