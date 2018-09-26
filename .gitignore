@@ -1,1 +1,4 @@
 target/
+
+# MacOSX files
+.DS_Store
