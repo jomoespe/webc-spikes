@@ -12,17 +12,12 @@ import (
 )
 
 func Filter(h http.Header, excludes []string) http.Header {
-	// create an map with the filter to excludes
-	filter := make(map[string]struct{}, len(excludes))
-	for _, s := range excludes {
-		filter[s] = struct{}{}
-	}
-
 	header := make(map[string][]string)
 	for key, value := range h {
-		if _, ok := filter[key]; !ok {
-			header[key] = value
-		}
+		header[key] = value
+	}
+	for _, exclude := range excludes {
+		delete(header, exclude)
 	}
 	return header
 }
