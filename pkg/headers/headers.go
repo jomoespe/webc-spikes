@@ -11,13 +11,17 @@ import (
 	"net/http"
 )
 
-func Filter(h http.Header, excludes []string) http.Header {
-	header := make(map[string][]string)
-	for key, value := range h {
-		header[key] = value
+type MyHeader http.Header
+
+func (h MyHeader) Copy(header *http.Header) {
+	for key, value := range *header {
+		// TODO should y copy the values to a temp before that (https://golang.org/src/net/http/header.go clone function)
+		h[key] = value
 	}
+}
+
+func (h MyHeader) Filter(excludes []string) {
 	for _, exclude := range excludes {
-		delete(header, exclude)
+		delete(h, exclude)
 	}
-	return header
 }
